@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: complex-common-util
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 李万林
+Implementation-Vendor-Id: www.forest.org
+Build-Jdk: 1.8.0_101
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/complex/complex-common-util
+Created-By: Maven Integration for Eclipse
+

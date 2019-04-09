@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>管理系统</title>
+    <meta name="keywords" content="后台管理">
+    <meta name="description" content="基于springcloud的权限管理系统">
+    <link href="/assets/css/bootstrap.min.css"  rel="stylesheet"/>
+    <link href="/assets/css/font-awesome.min.css"  rel="stylesheet"/>
+    <link href="/assets/css/style.css"  rel="stylesheet"/>
+    <link href="/assets/css/login.min.css" rel="stylesheet"/>
+    <link href="/assets/ruoyi/css/ry-ui.css" rel="stylesheet"/>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/layer/layer.js"></script>
+    <script src="/assets/ajax.js"></script>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <style type="text/css">label.error { position:inherit;  }</style>
+    <script>
+        /* if(window.top!==window.self){window.top.location=window.location}; */
+        
+        $(document).ready(function(){
+        	$("#btnSubmit").click(function(){
+        		var username=$.trim($("#username").val());
+            	var password=$.trim($("#password").val());
+            	if(username.length>0&&username.length>0){
+            		var data={"loginName":username,"password":password};
+            		var res_data=$.min_ajax(data,locaUrl+"/sysuser/login","post","json",false);
+            		if(res_data.statusCode==200){
+            			sessionStorage.setItem('token',res_data.data);
+            			location.href="main.html";
+            		}
+            	}else{
+            		layer.msg('用户名或密码不能为空！'); 
+            	}
+        		
+        	})
+        });
+    </script>
+</head>
+
+<body class="signin">
+
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="signin-info">
+                    <div class="m-b"></div>
+                    <h4>欢迎使用 <strong>后台管理系统</strong></h4>
+                    <ul class="m-b">
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> springcloud</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> eureka注册中心</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> security JWT认证</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> zuul网关</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Bootstrap</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <form id="signupForm">
+                    <h4 class="no-margins">登录：</h4>
+                    <input type="text"     name="username" id="username" class="form-control uname"     placeholder="用户名" value="admin"    />
+                    <input type="password" name="password" id="password" class="form-control pword"     placeholder="密码"   value="admin123" />
+					 <div class="row m-t" >
+						<!--<div class="col-xs-6">
+						    <input type="text" name="validateCode" class="form-control code" placeholder="验证码" maxlength="5">
+						</div>
+						<div class="col-xs-6">
+							<a href="javascript:void(0);" title="点击更换验证码">
+								<img th:src="@{captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
+							</a>
+						</div>-->
+					</div> 
+                    <div class="checkbox-custom">
+				        <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme">记住我</label>
+				    </div>
+				    <input type="button" class="btn btn-success btn-block" id="btnSubmit" data-loading="正在验证登录，请稍后..." value="登录"/>
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+        <div class="pull-left">
+            &copy; 2019 All Rights Reserved. springboot <br>
+            <a href="#" target="_blank" rel="nofollow">010101010101</a><br>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

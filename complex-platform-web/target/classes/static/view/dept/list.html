@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="后台管理">
+    <meta name="description" content="基于springcloud的权限管理系统">
+    <title>个人信息</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="/assets/ajax/libs/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+	<link href="/assets/ajax/libs/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+	<link href="/assets/css/animate.css" rel="stylesheet"/>
+	<link href="/assets/css/style.css" rel="stylesheet"/>
+	<link href="/assets/ajax/libs/select/select2.css" rel="stylesheet"/>
+	<link href="/assets/ruoyi/css/ry-ui.css" rel="stylesheet"/>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/ajax/libs/layer/layer.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/ajax/libs/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="/assets/ajax/libs/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="/assets/ajax/libs/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js"></script>
+	<script src="/assets/ajax/libs/bootstrap-table/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
+	<script src="/assets/ajax/libs/bootstrap-treetable/bootstrap-treetable.js"></script>
+	<script src="/assets/ajax/libs/blockUI/jquery.blockUI.js"></script>
+	<script src="/assets/ajax/libs/iCheck/icheck.min.js"></script>
+	<script src="/assets/ajax/libs/layer/layer.min.js"></script>
+	<script src="/assets/ajax/libs/layui/layui.js"></script>
+	<script src="/assets/ruoyi/js/common.js?v=0.0.2"></script>
+	<script src="/assets/ruoyi/js/ry-ui.js?v=0.0.2"></script>
+	<script src="/assets/ajax.js"></script>
+    <script src="/assets/check.js"></script>
+    
+    <script>
+      
+    </script>
+</head>
+
+<body class="gray-bg">
+	<div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="dept-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								部门名称：<input type="text" name="deptName"/>
+							</li>
+							<li>
+								部门状态：<select name="status" >
+									<option value="">所有</option>
+									
+								</select>
+							</li>
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" ><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+                
+            <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+		        <a class="btn btn-success" >
+                    <i class="fa fa-plus"></i> 新增
+                </a>
+                <a class="btn btn-primary"  >
+		            <i class="fa fa-edit"></i> 修改
+		        </a>
+                <a class="btn btn-info" id="expandAllBtn">
+                    <i class="fa fa-exchange"></i> 展开/折叠
+                </a>
+	        </div>
+       		 <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-tree-table" data-mobile-responsive="true"></table>
+	        </div>
+	    </div>
+	</div>
+</body>
+<script>
+$(function() {
+	var options = {
+	        code: "id",
+	        parentCode: "parentId",
+	        uniqueId: "id",
+	        url:locaUrl+'/sysdept/getList',
+	        createUrl:"/add/1",
+	        updateUrl:"/edit/1",
+	        removeUrl:"/remove/1",
+	        modalName: "部门",
+	        columns: [{
+                field: 'selectItem', 
+                radio: true
+             },
+             {
+	            field: 'name',
+	            title: '部门名称',
+	            align: "left"
+	        },
+	        {
+	            field: 'orderNum',
+	            title: '排序',
+	            align: "left"
+	        },
+	        {
+	            field: 'status',
+	            title: '状态',
+	            align: "left"
+	            
+	        },
+	        {
+	            field: 'createTime',
+	            title: '创建时间',
+	            align: "left"
+	        },
+	        {
+	            title: '操作',
+	            align: 'left'
+	           
+	        }]
+	   }
+	$.treeTable.init(options);
+});
+</script>
+</html>
