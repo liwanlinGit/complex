@@ -1,4 +1,4 @@
-综合分布式管理平台
+spring cloud综合分布式管理平台
 complex
   |
   ----complex-common-util  公共工具类
